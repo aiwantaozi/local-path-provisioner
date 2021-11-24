@@ -283,6 +283,10 @@ func (p *LocalPathProvisioner) Delete(pv *v1.PersistentVolume) (err error) {
 	return nil
 }
 
+func (p *LocalPathProvisioner) SupportsBlock() bool {
+	return true
+}
+
 func (p *LocalPathProvisioner) getPathAndNodeForPV(pv *v1.PersistentVolume) (path, node string, err error) {
 	defer func() {
 		err = errors.Wrapf(err, "failed to delete volume %v", pv.Name)
